@@ -23,17 +23,22 @@ export class News extends Component {
     };
   }
   async componentDidMount() {
+    this.props.setProgress(0)
     this.setState({ loading: true });
     let data = await fetch(
       `https://newsapi.org/v2/everything?q=${this.props.q}&apiKey=07d673cfec874afda8fb694c94d67ae6&page=${this.state.page}&pageSize=21`
     );
-
+    this.props.setProgress(40)
     data = await data.json();
+    this.props.setProgress(70)
+
     this.setState({
       articles: data.articles,
       loading: false,
       totalResults: data.totalResults,
     });
+    this.props.setProgress(100)
+
   }
 
   previous = async () => {
@@ -89,12 +94,13 @@ export class News extends Component {
       loading: false,
       totalResults: data.totalResults,
     });
+
   };
 
   render() {
     return (
       <div className="container">
-        <h5 className="my-3 text-center">
+        <h5 className="text-center" style={{marginTop:"4em"}}>
           NewsMonkey - {`${this.capatialize(this.props.q)}`}
         </h5>
         {/* {this.state.loading && <Spinner />} */}
