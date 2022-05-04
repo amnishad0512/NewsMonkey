@@ -62,10 +62,16 @@ export class News extends Component {
     });
   };
 
+  capatialize(string){
+   let text = string.toLowerCase();
+   let firstChar = text.charAt(0).toUpperCase();
+   return firstChar+text.slice(1);
+  }
+
   render() {
     return (
       <div className="container">
-        <h5 className="my-3 text-center">NewsMonkey Top-Headlines</h5>
+        <h5 className="my-3 text-center">NewsMonkey - {`${this.capatialize(this.props.q)}`}</h5>
         {this.state.loading && <Spinner />}
         <div className="row">
           {!this.state.loading &&
@@ -78,6 +84,8 @@ export class News extends Component {
                     desc={newsItem.description}
                     imgURL={newsItem.urlToImage}
                     newsURl={newsItem.url}
+                    author={newsItem.author}
+                    publishedAt={newsItem.publishedAt}
                   />
                 </div>
               );
