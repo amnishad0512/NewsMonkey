@@ -46,15 +46,7 @@ export class Navbar extends Component {
                   Entertainment
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/general"
-                >
-                  General{" "}
-                </Link>
-              </li>
+             
               <li className="nav-item">
                 <Link
                   className="nav-link active"
